@@ -7,7 +7,7 @@
 scDecipher is a toolkit to decipher the dominant cell communication assmebly (DCA) for downstream target genes based on scRNA-seq data by utilizing multi-view graph attention network. (i) scDecipher takes advantage of four state-of-the-art cell–cell communication analysis tools to systematically and reliably infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data. (ii) Based on prior knowledge of L-R pairs and gene expression, scDecipher constructs a multi-view cell-cell communication network between different cell types with single-cell resolution by using an edge weighting strategy and filtering out edges with low specificity. (iii) scDecipher develops a multi-view graph attention network to predict the expression pattern of target genes or the functional status of receiver cells, and deciphers the dominant functional cell–cell communication by interpreting the trained model. The overview figure of scDecipher is shown as follows.
 
 
-![Image text](https://github.com/jiboyalab/scDecipher/blob/main/IMG/%E6%B5%81%E7%A8%8B%E5%9B%BE.pdf)
+![Image text](https://github.com/jiboyalab/scDecipher/blob/main/IMG/overview.png)
 
 ## Table of Contents
 
