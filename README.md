@@ -33,7 +33,7 @@ scDecipher is tested to work under:
 * Anndata 0.8.0
 * R 4.2.2
 * Numpy 1.23.5
-* Other basic python toolkits
+* Other basic python and r toolkits
 ```
 ### Installation of other dependencies
 * Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
