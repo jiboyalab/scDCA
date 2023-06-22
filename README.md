@@ -1,7 +1,11 @@
 # scDecipher: multi-view graph attention network for deciphering dominant cell communication assembly in tumor microenvironment
-=============================================================================
+===========================================================================
 
+
+[![license](https://img.shields.io/badge/python_-3.8.0_-blue)](https://www.python.org/)
+[![license](https://img.shields.io/badge/torch_-1.12.0_-blue)](https://pytorch.org/)
 [![license](https://img.shields.io/badge/scanpy_-1.9.0_-blue)](https://scanpy.readthedocs.io/en/stable/)
+[![license](https://img.shields.io/badge/anndata_-0.8.0_-blue)](https://anndata-tutorials.readthedocs.io/en/latest/index.html/)
 
 
 scDecipher is a toolkit to decipher the dominant cell communication assmebly (DCA) for downstream target genes based on scRNA-seq data by utilizing multi-view graph attention network. (i) scDecipher takes advantage of four state-of-the-art cell–cell communication analysis tools to systematically and reliably infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data. (ii) Based on prior knowledge of L-R pairs and gene expression, scDecipher constructs a multi-view cell-cell communication network between different cell types with single-cell resolution by using an edge weighting strategy and filtering out edges with low specificity. (iii) scDecipher develops a multi-view graph attention network to predict the expression pattern of target genes or the functional status of receiver cells, and deciphers the dominant functional cell–cell communication by interpreting the trained model. The overview figure of scDecipher is shown as follows.
