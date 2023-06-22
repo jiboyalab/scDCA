@@ -1,9 +1,7 @@
 # scDecipher: multi-view graph attention network for deciphering dominant cell communication assembly in tumor microenvironment
-![banner]()
+====================================================================================================
 
-![badge]()
-![badge]()
-[![license](https://img.shields.io/github/license/:user/:repo.svg)](LICENSE)
+[![license](https://img.shields.io/badge/scanpy_-1.9.0_-blue)](https://scanpy.readthedocs.io/en/stable/)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 This is an example file with maximal choices selected.
