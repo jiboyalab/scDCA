@@ -73,7 +73,7 @@ Rscript ./tools/run_icellnet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./
 | **count** | Count matrix / normalized count matrix path. |
 | **meta** | Meta data (celltypes annotation) path. |
 | **output** | Directory where the results will be allocated. |
-### Any optional sections
+
 
 ## API
 
