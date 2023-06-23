@@ -16,7 +16,7 @@ scDecipher is a toolkit to decipher the dominant cell communication assmebly (DC
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
+- [Quick start](#quick-start)
 - [API](#api)
 - [Contributing](#contributing)
 - [Contacts](#contacts)
@@ -43,12 +43,15 @@ scDecipher is tested to work under:
 * Install [ICELLNET](https://github.com/soumelis-lab/ICELLNET) using ` install_github("soumelis-lab/ICELLNET",ref="master", subdir="icellnet") ` in the R environment if you encounter any issue.
 
 
-## Usage
+# Quick start
+To reproduce our results:
+
+1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
+```
 
 ```
-```
 
-Note: The `license` badge image link at the top of this file should be updated with the correct `:user` and `:repo`.
+
 
 ### Any optional sections
 
@@ -60,11 +63,7 @@ Note: The `license` badge image link at the top of this file should be updated w
 
 ## Contributing
 
-See [the contributing file](CONTRIBUTING.md)!
-
-PRs accepted.
-
-Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+Jiboya Xuliwen ..
 
 ## Contacts
 If you have any questions or comments, please feel free to email: byj@hnu.edu.cn.
