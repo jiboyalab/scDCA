@@ -17,7 +17,6 @@ scDecipher is a toolkit to decipher the dominant cell communication assmebly (DC
 
 - [Installation](#installation)
 - [Quick start](#quick-start)
-- [API](#api)
 - [Contributing](#contributing)
 - [Contacts](#contacts)
 - [License](#license)
@@ -89,11 +88,22 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 | **count** | Count matrix / normalized count matrix path. |
 | **output** | The final results of LR pairs. |
 
-## API
+2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
+```
 
-### Any optional sections
+python ./src/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb_lr.csv --lr_cellchat ./output/process_cellchat_lr.csv --lr_nichenet ./output/process_nichenet_lr.csv --lr_icellnet ./output/process_icellchat_lr.csv --count ./data/RCC_scRNA_P76_matrix.txt --output ./output/final_lr.csv
+```
+**Arguments**:
 
-## More optional sections
+| **Arguments** | **Detail** |
+| --- | --- |
+| **lr_cellphonedb** | The results of LR pairs output by cellphonedb. |
+| **lr_cellchat** | The results of LR pairs output by cellchat. |
+| **lr_nichenet** | The results of LR pairs output by nichenet. |
+| **lr_icellnet** | The results of LR pairs output by icellnet. |
+| **count** | Count matrix / normalized count matrix path. |
+| **output** | The final results of LR pairs. |
+
 
 ## Contributing
 
