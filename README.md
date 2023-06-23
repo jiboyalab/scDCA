@@ -74,6 +74,19 @@ Rscript ./tools/run_icellnet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./
 | **meta** | Meta data (celltypes annotation) path. |
 | **output** | Directory where the results will be allocated. |
 
+```
+# Obtain the intersection of LR pairs output by 4 cellular communication tools, which are required to be found by at least 2 tools and have expression in scRNA-seq data.
+python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb_lr.csv --lr_cellchat ./output/process_cellchat_lr.csv --lr_nichenet ./output/process_nichenet_lr.csv --lr_icellnet ./output/process_icellchat_lr.csv --output ./output/final_lr.csv
+```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **lr_cellphonedb** | The results of LR pairs output by cellphonedb. |
+| **lr_cellchat** | The results of LR pairs output by cellchat. |
+| **lr_nichenet** | The results of LR pairs output by nichenet. |
+| **lr_icellnet** | The results of LR pairs output by icellnet. |
+| **output** | The final results of LR pairs. |
 
 ## API
 
