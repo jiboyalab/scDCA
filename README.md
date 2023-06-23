@@ -19,6 +19,7 @@ scDecipher is a toolkit to decipher the dominant cell communication assmebly (DC
 - [Usage](#usage)
 - [API](#api)
 - [Contributing](#contributing)
+- [Contacts](#contacts)
 - [License](#license)
 
 
@@ -65,7 +66,8 @@ PRs accepted.
 
 Small note: If editing the Readme, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
-### Any optional sections
+## Contacts
+If you have any questions or comments, please feel free to email: byj@hnu.edu.cn.
 
 ## License
 
