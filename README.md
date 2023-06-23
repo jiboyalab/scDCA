@@ -69,6 +69,17 @@ Rscript ./tools/run_cellchat.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./
 | **meta** | Meta data (celltypes annotation) path. |
 | **output** | Directory where the results will be allocated. |
 
+```
+# The used ligand-target matrix, lr network and weighted networks of interacting cells can be downloaded from [Zenodo](https://zenodo.org/record/7074291).
+Rscript ./tools/run_nichenet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
+```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **count** | Count matrix / normalized count matrix path. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **output** | Directory where the results will be allocated. |
 
 ### Any optional sections
 
