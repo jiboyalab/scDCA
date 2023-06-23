@@ -56,8 +56,18 @@ cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data
 | --- | --- |
 | **counts-data** | [ensembl or gene_name or hgnc_symbol] |
 | **threads** | Max of threads to process the data. |
-| **output-path** | Directory where the results will be allocated (the directory must exist) |
+| **output-path** | Directory where the results will be allocated (the directory must exist). |
 
+```
+Rscript ./tools/run_cellchat.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
+```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **count** | Count matrix / normalized count matrix path. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **output** | Directory where the results will be allocated. |
 
 
 ### Any optional sections
