@@ -49,8 +49,14 @@ To reproduce our results:
 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
 ```
 cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
-
 ```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **counts-data** | [ensembl or gene_name or hgnc_symbol] |
+| **threads** | Max of threads to process the data. |
+| **output-path** | Directory where the results will be allocated (the directory must exist) |
 
 
 
