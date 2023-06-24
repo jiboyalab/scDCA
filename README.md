@@ -135,8 +135,28 @@ Visualization of results:
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
 </div>
 
+## 4，prioritize the dominant cell communication assmebly that affected functional states of malignant cells
+```
+python ./src/tutorials3/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --cell_type Malignant --cell_state EMT --dca_rank_result ./output/state_dca_rank_result.csv
+```
+**Arguments**:
 
-## Contributing
+| **Arguments** | **Detail** |
+| --- | --- |
+| **count** | Count matrix / normalized count matrix path. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **lr_file** | The final results of LR pairs. |
+| **cell_type** | The specific cell type.  |
+| **cell_state** | [Angiogenesis or Apoptosis or CellCycle or Differentiation or DNAdamage or DNArepair and so on]  |
+| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that affected functional states of malignant cells. |
+
+
+Visualization of results:
+<div align="center">
+  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cellstate.png" alt="Editor" width="500">
+</div>
+
+# Contributing
 
 Jiboya Xuliwen ..
 
