@@ -103,7 +103,10 @@ python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 | **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 | **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
 
+![Image text](https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png)
 
+
+![Image text](https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png)
 ## Contributing
 
 Jiboya Xuliwen ..
