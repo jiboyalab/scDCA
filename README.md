@@ -156,6 +156,34 @@ Visualization of results:
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cellstate.png" alt="Editor" width="500">
 </div>
 
+## 5，clinical intervertion altered effect of cell communication on gene expression
+```
+python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P915_matrix.txt --meta ./data/RCC_scRNA_P915_metadata.txt --lr_file ./output/final_lr.csv --gene CD8A --dca_rank_result ./output/P915_CD8A_dca_rank_result.csv --ccc_ratio_result ./output/P915_CD8A_ccc_ratio_result.csv
+```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **count** | Count matrix / normalized count matrix path. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **lr_file** | The final results of LR pairs. |
+| **gene** | The specific target gene name  |
+| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
+| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
+
+Visualization of results:
+<div align="center">
+  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
+</div>
+
+===========================================================================
+
+<div align="center">
+  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
+</div>
+
+
+
 # Contributing
 
 Jiboya Xuliwen ..
