@@ -45,7 +45,7 @@ scDecipher is tested to work under:
 # Quick start
 To reproduce our results:
 
-1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
+## 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
 ```
 cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
 ```
@@ -88,9 +88,8 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 | **count** | Count matrix / normalized count matrix path. |
 | **output** | The final results of LR pairs. |
 
-2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
+## 2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
 ```
-
 python ./src/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb_lr.csv --lr_cellchat ./output/process_cellchat_lr.csv --lr_nichenet ./output/process_nichenet_lr.csv --lr_icellnet ./output/process_icellchat_lr.csv --count ./data/RCC_scRNA_P76_matrix.txt --output ./output/final_lr.csv
 ```
 **Arguments**:
