@@ -18,8 +18,8 @@ scDecipher is a toolkit to decipher the dominant cell communication assmebly (DC
 - [Installation](#installation)
 - [Quick start](#quick-start)
 - [Contributing](#contributing)
-- [Contacts](#contacts)
 - [Cite](#cite)
+- [Contacts](#contacts)
 - [License](#license)
 
 
