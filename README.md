@@ -19,6 +19,7 @@ scDecipher is a toolkit to decipher the dominant cell communication assmebly (DC
 - [Quick start](#quick-start)
 - [Contributing](#contributing)
 - [Contacts](#contacts)
+- [Cite](#cite)
 - [License](#license)
 
 
@@ -188,9 +189,23 @@ Visualization of results:
 
 Jiboya Xuliwen ..
 
-## Contacts
+# Cite
+
+
+
+<p align="center">
+  <a href='https://clustrmaps.com/site/1bvag'  title='Visit tracker'><img src='//clustrmaps.com/map_v2.png?cl=5e698f&w=268&t=m&d=4hIDPHzBcvyZcFn8iDMpEM-PyYTzzqGtngzRP7_HkNs&co=e4eaf5&ct=523e3e'/></a>
+</p>
+<p align="center">
+  <a href="#">
+     <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjiboyalab%2FscDecipher&labelColor=%233499cc&countColor=%2370c168" />
+   </a>
+</p>
+
+
+# Contacts
 If you have any questions or comments, please feel free to email: byj@hnu.edu.cn.
 
-## License
+# License
 
 [MIT © Richard McRichface.](../LICENSE)
