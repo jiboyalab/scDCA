@@ -90,18 +90,18 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 
 ## 2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
 ```
-python ./src/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb_lr.csv --lr_cellchat ./output/process_cellchat_lr.csv --lr_nichenet ./output/process_nichenet_lr.csv --lr_icellnet ./output/process_icellchat_lr.csv --count ./data/RCC_scRNA_P76_matrix.txt --output ./output/final_lr.csv
+python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --gene CD8A --dca_rank_result ./output/CD8A_dca_rank_result.csv --ccc_ratio_result ./output/CD8A_ccc_ratio_result.csv
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **lr_cellphonedb** | The results of LR pairs output by cellphonedb. |
-| **lr_cellchat** | The results of LR pairs output by cellchat. |
-| **lr_nichenet** | The results of LR pairs output by nichenet. |
-| **lr_icellnet** | The results of LR pairs output by icellnet. |
 | **count** | Count matrix / normalized count matrix path. |
-| **output** | The final results of LR pairs. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **lr_file** | The final results of LR pairs. |
+| **gene** | The specific target gene name  |
+| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
+| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
 
 
 ## Contributing
