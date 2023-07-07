@@ -150,7 +150,7 @@ python ./src/tutorials3/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 | **meta** | Meta data (celltypes annotation) path. |
 | **lr_file** | The final results of LR pairs. |
 | **cell_type** | The specific cell type.  |
-| **cell_state** | [Angiogenesis or Apoptosis or CellCycle or Differentiation or DNAdamage or DNArepair and so on]  |
+| **cell_state** | [Angiogenesis; Apoptosis; CellCycle; Differentiation; DNAdamage; DNArepair; EMT; Hypoxia; Inflammation; Invasion; Metastasis; Proliferation; Quiescence; Stemness.]  |
 | **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that affected functional states of malignant cells. |
 
 
