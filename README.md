@@ -176,14 +176,12 @@ python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P915_matrix.txt --meta 
 
 Visualization of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
+  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arankchange.png" alt="Editor" width="500">
 </div>
 
 ===========================================================================
 
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
-</div>
+
 
 
 
