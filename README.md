@@ -39,7 +39,7 @@ scDecipher is tested to work under:
 * Other basic python and r toolkits
 ```
 ### Installation of other dependencies 
-Notes: These dependencies, in order to infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data, can skip the installation process if you already have the LR result files (e.g. LR_P76.csv and LR_P915.csv provided in the data folder).
+**Notes:** These dependencies, in order to infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data, can skip the installation process if you already have the LR result files (e.g. LR_P76.csv and LR_P915.csv provided in the data folder).
 * Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
 * Install [CellChat v1.6.0](https://github.com/sqjin/CellChat/tree/master) using ` devtools::install_github("sqjin/CellChat") ` in the R environment if you encounter any issue.
 * Install [NicheNet v1.1.0](https://github.com/saeyslab/nichenetr) using ` devtools::install_github("saeyslab/nichenetr") ` in the R environment if you encounter any issue.
@@ -48,7 +48,7 @@ Notes: These dependencies, in order to infer ligand–receptor (L-R) pairs from 
 
 # Quick start
 To reproduce our results:
-
+**Notes:** We provide readers with 3 sets of data as detailed in the following data descriptions. Note that in order to reduce the computational overhead and to make it easier for users to reproduce our code, we will use the smaller test data in the following tutorials. Processing of other single-cell RNA-Seq data follows the same core pipeline as the test data.
 ## 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
 ```
 cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
