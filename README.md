@@ -38,7 +38,8 @@ scDecipher is tested to work under:
 * Numpy 1.23.5
 * Other basic python and r toolkits
 ```
-### Installation of other dependencies ()
+### Installation of other dependencies 
+Notes: These dependencies, in order to infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data, can skip the installation process if you already have the LR result files (e.g. LR_P76.csv and LR_P915.csv provided in the data folder).
 * Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
 * Install [CellChat v1.6.0](https://github.com/sqjin/CellChat/tree/master) using ` devtools::install_github("sqjin/CellChat") ` in the R environment if you encounter any issue.
 * Install [NicheNet v1.1.0](https://github.com/saeyslab/nichenetr) using ` devtools::install_github("saeyslab/nichenetr") ` in the R environment if you encounter any issue.
