@@ -38,7 +38,7 @@ scDecipher is tested to work under:
 * Numpy 1.23.5
 * Other basic python and r toolkits
 ```
-### Installation of other dependencies
+### Installation of other dependencies ()
 * Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
 * Install [CellChat v1.6.0](https://github.com/sqjin/CellChat/tree/master) using ` devtools::install_github("sqjin/CellChat") ` in the R environment if you encounter any issue.
 * Install [NicheNet v1.1.0](https://github.com/saeyslab/nichenetr) using ` devtools::install_github("saeyslab/nichenetr") ` in the R environment if you encounter any issue.
