@@ -57,7 +57,7 @@ To reproduce our results:
 | File name  | Description |
 | ------------- | ------------- |
 | RCC_scRNA_P76_matrix.txt  | The single-cell gene expression matrix for patient 76 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| RCC_scRNA_P76_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 76 with advanced renal cell carcinoma.  |
+| RCC_scRNA_P76_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 76 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the Github/data or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
 | LMSNPLncMi.csv  | MiRNA-lncRNA associations obtained from lncRNASNP2 database  |
 | LDAllLncDisease.csv| LncRNA-disease associations obtained from lncRNASNP2 and LncRNADisease database  |
 | DrugDiseaseDrugDisease.csv| Drug-disease associations obtained from CTD:update 2019 database| 
