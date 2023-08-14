@@ -51,6 +51,22 @@ To reproduce our results:
 
 
 **Notes:** We provide readers with 3 sets of data as detailed in the following data descriptions. Note that in order to reduce the computational overhead and to make it easier for readers to reproduce our code, we will use the smaller test data in the following tutorials. Processing of other single-cell RNA-Seq data follows the same core pipeline as the test data. Due to the large size of the data, we also uploaded them to the [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link).
+
+## Data description
+
+| File name  | Description |
+| ------------- | ------------- |
+| MDCuiMiDisease.csv  | MiRNA-disease associations obtained from HMDD v3.0 database |
+| DPDrugBankDrugProtein5.csv  | Drug-protein associations obtained from DrugBank v5.0 database  |
+| LMSNPLncMi.csv  | MiRNA-lncRNA associations obtained from lncRNASNP2 database  |
+| LDAllLncDisease.csv| LncRNA-disease associations obtained from lncRNASNP2 and LncRNADisease database  |
+| DrugDiseaseDrugDisease.csv| Drug-disease associations obtained from CTD:update 2019 database| 
+| PDDisGeNETProteinDisease20.csv|  Protein-disease associations obtained from DisGeNET database| 
+| MPmiRTarBaseMiProtein5.csv| MiRNA-protein associations obtained from miRTarBase: update 2018 database| 
+| LPLncRNA2TargetLncProtein3.csv|  LncRNA-protein associations obtained from LncRNA2Target v2.0 database| 
+| PPI.csv| Protein-protein interactions obtained from STRING database for model training and prediction| 
+| AllProteinSequence.csv| Original protein sequence| 
+
 ## 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
 ```
 cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
