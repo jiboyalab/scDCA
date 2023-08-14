@@ -48,7 +48,9 @@ scDecipher is tested to work under:
 
 # Quick start
 To reproduce our results:
-**Notes:** We provide readers with 3 sets of data as detailed in the following data descriptions. Note that in order to reduce the computational overhead and to make it easier for users to reproduce our code, we will use the smaller test data in the following tutorials. Processing of other single-cell RNA-Seq data follows the same core pipeline as the test data.
+
+
+**Notes:** We provide readers with 3 sets of data as detailed in the following data descriptions. Note that in order to reduce the computational overhead and to make it easier for readers to reproduce our code, we will use the smaller test data in the following tutorials. Processing of other single-cell RNA-Seq data follows the same core pipeline as the test data. Due to the large size of the data, we also uploaded them to the [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link).
 ## 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
 ```
 cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
