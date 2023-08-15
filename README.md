@@ -104,8 +104,33 @@ cellphonedb method statistical_analysis ./data/ScRNA_test_data_metadata.txt ./da
 
 
 ```
-Rscript ./tools/run_cellchat.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
+# The following program needs to be run in the R environment, see [CellChat](https://github.com/sqjin/CellChat), [NicheNet](https://github.com/saeyslab/nichenetr) and [ICELLNET](https://github.com/soumelis-lab/ICELLNET) for details on how to use it:
 
+Rscript ./tools/run_cellchat.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt  --output ./output/
+```
+```
+[1] "############ ------------- cellchat --------------- ############"
+[1] ">>> loading library and data <<< [2023-08-15 10:48:39]"
+[1] ">>> start CellChat workflow <<< [2023-08-15 10:48:50]"
+[1] "Create a CellChat object from a data matrix"
+The cell barcodes in 'meta' is  P2@CSF-0703-A1-1_GGTAATCA P2@CSF-0703-A1-1_CCTTCAAG P2@CSF-0703-A1-1_CACACTGA P2@CSF-0703-A1-2_GGTGGACT P2@CSF-0703-A1-2_TCAACGAC P2@CSF-0703-A2-1_GGTAATCA 
+Set cell identities for the new CellChat object 
+The cell groups used for CellChat analysis are  B CD8T Malignant Mono/Macro 
+[1] ">>> Infer CCI network <<< [2023-08-15 10:49:05]"
+triMean is used for calculating the average gene expression per cell group. 
+[1] ">>> Run CellChat on sc/snRNA-seq data <<< [2023-08-15 10:49:05]"
+  |======================================================================| 100%
+[1] ">>> CellChat inference is done. Parameter values are stored in `object@options$parameter` <<< [2023-08-15 10:49:46]"
+[1] ">>> saving results <<< [2023-08-15 10:49:46]"
+[1] ">>> done <<< [2023-08-15 10:49:48]"
+Warning message:
+In createCellChat(object = as.matrix(data.norm), group.by = "group",  :
+  The cell barcodes in 'meta' is different from those in the used data matrix.
+              We now simply assign the colnames in the data matrix to the rownames of 'mata'!
+```
+
+
+```
 # The used ligand-target matrix, lr network and weighted networks of interacting cells can be downloaded from [Zenodo](https://zenodo.org/record/7074291).
 Rscript ./tools/run_nichenet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
 
