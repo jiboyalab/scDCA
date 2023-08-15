@@ -152,8 +152,34 @@ There were 11 warnings (use warnings() to see them)
 
 
 ```
+# The used ICELLNETdb for icellnet can be downloaded from our Google Drive.
+
 Rscript ./tools/run_icellnet.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt  --output ./output/
 ```
+```
+[1] "############ ------------- icellnet --------------- ############"
+[1] ">>> loading data <<< [2023-08-15 11:17:58]"
+[1] ">>> generate Seurat object <<< [2023-08-15 11:18:10]"
+[1] ">>> start ICELLNET workflow (sc.data.cleaning) <<< [2023-08-15 11:18:11]"
+[1] "Filling in intermediate table: percentage of expressing cell per cluster per gene, and mean of expression"
+[1] "Intermediate table were saved as scRNAseq_statsInfo_for_ICELLNET.csv."
+[1] "Filtering done"
+[1] ">>> Go through each cell types <<< [2023-08-15 11:18:29]"
+Note: Check that PC.data and/or CC.data contains rownames. Ignore this note if this is the case 
+Note: lr contains only 78 after filtering interaction highest than theshold 
+[1] ">>> Bvs others finished <<< [2023-08-15 11:18:30]"
+Note: Check that PC.data and/or CC.data contains rownames. Ignore this note if this is the case 
+Note: lr contains only 117 after filtering interaction highest than theshold 
+[1] ">>> CD8Tvs others finished <<< [2023-08-15 11:18:30]"
+Note: Check that PC.data and/or CC.data contains rownames. Ignore this note if this is the case 
+Note: lr contains only 120 after filtering interaction highest than theshold 
+[1] ">>> Malignantvs others finished <<< [2023-08-15 11:18:31]"
+Note: Check that PC.data and/or CC.data contains rownames. Ignore this note if this is the case 
+Note: lr contains only 101 after filtering interaction highest than theshold 
+[1] ">>> Mono/Macrovs others finished <<< [2023-08-15 11:18:31]"
+There were 50 or more warnings (use warnings() to see the first 50)
+```
+
 **Arguments**:
 
 | **Arguments** | **Detail** |
