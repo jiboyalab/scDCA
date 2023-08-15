@@ -66,7 +66,7 @@ run_cellchat <- function(count_path, meta_path, output_path){
   
   # Preprocessing the expression data for cell-cell communication analysis
   cellchat <- subsetData(cellchat) # subset the expression data of signaling genes for saving computation cost
-  future::plan("multiprocess", workers = 60) # do parallel, but we can not do it on our own server
+  # future::plan("multiprocess", workers = 60) # do parallel, but we can not do it on our own server
   cellchat <- identifyOverExpressedGenes(cellchat)
   cellchat <- identifyOverExpressedInteractions(cellchat)
   cellchat <- projectData(cellchat, PPI.human)
