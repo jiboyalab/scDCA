@@ -131,7 +131,7 @@ In createCellChat(object = as.matrix(data.norm), group.by = "group",  :
 
 
 ```
-# The used ligand-target matrix, lr network and weighted networks of interacting cells can be downloaded from [Zenodo](https://zenodo.org/record/7074291).
+# The used ligand-target matrix, lr network and weighted networks of interacting cells for nichenet can be downloaded from [Zenodo](https://zenodo.org/record/7074291) or our  [Github/tools](https://github.com/jiboyalab/scDecipher/tree/main/tools).
 Rscript ./tools/run_nichenet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
 
 Rscript ./tools/run_icellnet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
