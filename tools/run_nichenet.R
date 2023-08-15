@@ -34,9 +34,9 @@ run_nichenet <- function(count_path, meta_path, output_path){
   print(paste0('>>> loading library and data <<< [', Sys.time(),']'))
   count_df = read.table(count_path,sep='\t',header=T,stringsAsFactors = F,row.names = 1)
   meta_df = read.table(meta_path,sep = '\t',header = T,stringsAsFactors = F,row.names = 1) 
-  ligand_target_matrix = readRDS("./tools/ligand_target_matrix.rds")
-  lr_network = readRDS("./tools/lr_network.rds")
-  weighted_networks = readRDS("./tools/weighted_networks.rds")
+  ligand_target_matrix = readRDS("/home/jby2/scDecipher/tools/ligand_target_matrix.rds")
+  lr_network = readRDS("/home/jby2/scDecipher/tools/lr_network.rds")
+  weighted_networks = readRDS("/home/jby2/scDecipher/tools/weighted_networks.rds")
   weighted_networks_lr = weighted_networks$lr_sig %>% inner_join(lr_network %>% distinct(from,to), by = c("from","to"))
   
   print(paste0('>>> generate seurat object <<< [', Sys.time(),']'))
