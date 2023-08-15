@@ -50,14 +50,18 @@ if __name__ =="__main__":
         data.append(data3[i][0])
     for i in range(1,len(data4)):
         data.append(data4[i][0])
-    #de-duplication
+
+    
+    # De-duplication
     data_set=list(set(data))
     final=[]
     pair=[]
     pair.append("ligand")
     pair.append("receptor")
     final.append(pair)
-    #Determine if the lr gene is in the expression
+
+    
+    # Determine if the lr gene is in the expression
     expressiondata=pd.read_table(args.count,sep="\t",header=0,index_col=0)
     expressiondatalist=expressiondata.index.values.tolist()
     for i in range(len(data_set)):
@@ -79,7 +83,7 @@ if __name__ =="__main__":
                 final.append(pair)
     
 
-    #Exists in at least two tools
+    # Exists in at least two tools
     final2=[]
     pair=[]
     pair.append("ligand")
