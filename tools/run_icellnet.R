@@ -1,4 +1,4 @@
-# library(optparse)
+library(optparse)
 library(BiocGenerics)
 library("org.Hs.eg.db")
 library("hgu133plus2.db")
@@ -9,26 +9,26 @@ library(icellnet)
 library(gridExtra)
 library(Seurat)
 
-# options(stringsAsFactors = FALSE)
+options(stringsAsFactors = FALSE)
 
-# option_list <- list(  
-#   make_option(c("-c", "--count"), type="character", 
-#               help="count matrix / normalized count matrix path"),
-#   make_option(c("-m", "--meta"), type="character",
-#               help="meta data (celltypes annotation) path"),
-#   make_option(c("-o", "--output"), type="character",
-#               help="the output dir")
-# )
-# opt_parser <- OptionParser(option_list=option_list,add_help_option = FALSE);
-# opts <- parse_args(opt_parser);
+option_list <- list(  
+  make_option(c("-c", "--count"), type="character", 
+              help="count matrix / normalized count matrix path"),
+  make_option(c("-m", "--meta"), type="character",
+              help="meta data (celltypes annotation) path"),
+  make_option(c("-o", "--output"), type="character",
+              help="the output dir")
+)
+opt_parser <- OptionParser(option_list=option_list,add_help_option = FALSE);
+opts <- parse_args(opt_parser);
 
-# count_path <- opts$count
-# meta_path <- opts$meta
-# output_path <- opts$output
+count_path <- opts$count
+meta_path <- opts$meta
+output_path <- opts$output
 
-# if (!file.exists(output_path)){
-#   dir.create(output_path)
-# }
+if (!file.exists(output_path)){
+  dir.create(output_path)
+}
 
 
 LR.selection <- function (lr = lr, thresh = 0, topn = NULL, sort.by = "sum", db.name.couple=db.name.couple) {
@@ -71,7 +71,7 @@ run_icellnet <- function(count_path, meta_path, output_path){
   
   ### loading database (cellchatdb)
   print(paste0('>>> loading data <<< [', Sys.time(),']'))
-  db=as.data.frame(read.csv('/home/jby2/HoloNet/Mycode_ccRCC/run_icellnet/ICELLNETdb.tsv', sep="\t",header = T, check.names=FALSE, stringsAsFactors = FALSE, na.strings = ""))
+  db=as.data.frame(read.csv('/home/jby2/scDecipher/tools/ICELLNETdb.tsv', sep="\t",header = T, check.names=FALSE, stringsAsFactors = FALSE, na.strings = ""))
   count_df = read.table(count_path,sep='\t',header=T,stringsAsFactors = F,row.names = 1)
   meta_df = read.table(meta_path,sep = '\t',header = T,stringsAsFactors = F,row.names = 1) 
   
@@ -121,8 +121,4 @@ run_icellnet <- function(count_path, meta_path, output_path){
   }
 }
 
-count_path="/home/jby2/HoloNet/Mycode_ccRCC4/origional_data/ccRCC_scRNASeq_NormalizedCounts_byus.txt"
-#文件格式为行是细胞的名称，列是基因名称，第一行第一列为“GENE”，read table的时候可以设置header=T,代表第一行第一列有字符，也可以为空
-meta_path="/home/jby2/HoloNet/Mycode_ccRCC4/origional_data/Final_SCP_Metadata_byus.txt"
-output_path="/home/jby2/HoloNet/Mycode_ccRCC4/run_icellnet/"
 run_icellnet(count_path, meta_path, output_path)
