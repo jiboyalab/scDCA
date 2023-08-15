@@ -72,6 +72,7 @@ To reproduce our results:
 **Notes:** If you already have an LR result file or want to specify the LR yourself (e.g. LR_P76.csv, LR_P915.csv and LR_test_data.csv provided in the data folder), skip this step.
 ```
 # The following program needs to be run in the cellphonedb environment, see [Cellphonedb](https://github.com/Teichlab/cellphonedb) for details on how to use it:
+
 cellphonedb method statistical_analysis ./data/ScRNA_test_data_metadata.txt ./data/ScRNA_test_data_matrix.txt --counts-data=gene_name --iterations=10 --threads=100 --output-path=./output/
 ```
 **Arguments**:
@@ -131,10 +132,27 @@ In createCellChat(object = as.matrix(data.norm), group.by = "group",  :
 
 
 ```
-# The used ligand-target matrix, lr network and weighted networks of interacting cells for nichenet can be downloaded from [Zenodo](https://zenodo.org/record/7074291) or our  [Github/tools](https://github.com/jiboyalab/scDecipher/tree/main/tools).
-Rscript ./tools/run_nichenet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
+# The used ligand-target matrix, lr network and weighted networks of interacting cells for nichenet can be downloaded from [Zenodo](https://zenodo.org/record/7074291) or our Google Drive.
 
-Rscript ./tools/run_icellnet.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
+Rscript ./tools/run_nichenet.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt  --output ./output/
+```
+```
+[1] "############ ------------- nichenet --------------- ############"
+[1] ">>> loading library and data <<< [2023-08-15 11:08:14]"
+[1] ">>> generate seurat object <<< [2023-08-15 11:08:35]"
+[1] ">>> start Nichenet workflow for each cell types <<< [2023-08-15 11:08:36]"
+[1] ">>> B_CD8T start <<< [2023-08-15 11:08:36]"
+[1] ">>> B_CD8T write <<< [2023-08-15 11:08:41]"
+[1] ">>> B_CD8T finish <<< [2023-08-15 11:08:41]"
+...
+[1] ">>> Mono/Macro_Malignant strict write <<< [2023-08-15 11:09:46]"
+[1] ">>> Mono/Macro_Malignant strict finish <<< [2023-08-15 11:09:46]"
+There were 11 warnings (use warnings() to see them)
+```
+
+
+```
+Rscript ./tools/run_icellnet.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt  --output ./output/
 ```
 **Arguments**:
 
