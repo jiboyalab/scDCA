@@ -190,6 +190,7 @@ There were 50 or more warnings (use warnings() to see the first 50)
 
 ```
 # Finally, obtain the intersection of LR pairs output by 4 cellular communication tools, which are required to be found by at least 2 tools and have expression in scRNA-seq data.
+
 python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb_lr.csv --lr_cellchat ./output/process_cellchat_lr.csv --lr_nichenet ./output/process_nichenet_lr.csv --lr_icellnet ./output/process_icellchat_lr.csv --count ./data/ScRNA_test_data_matrix.txt --output ./output/LR_test_data.csv
 ```
 **Arguments**:
@@ -203,7 +204,7 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 | **count** | Count matrix / normalized count matrix path. |
 | **output** | The final results of LR pairs. |
 
-## 2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
+## 2，Prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
 ```
 python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --gene CD8A --dca_rank_result ./output/CD8A_dca_rank_result.csv --ccc_ratio_result ./output/CD8A_ccc_ratio_result.csv
 ```
