@@ -69,17 +69,39 @@ To reproduce our results:
 | Test_data_malignant_cell_states_gsva_mat.txt  | The activity scores calculated by gene set variation analysis (gsva) for 14 functional state in malignant cells of test data, which 14 functional state signatures of malignant cells were obtained from the [CancerSEA](http://biocc.hrbmu.edu.cn/CancerSEA/)|
 
 ## 1，Infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
-**Notes:** If you already have an LR result file or want to specify the LR yourself ((e.g. LR_P76.csv, LR_P915.csv and LR_test_data.csv provided in the data folder), skip this step.
+**Notes:** If you already have an LR result file or want to specify the LR yourself (e.g. LR_P76.csv, LR_P915.csv and LR_test_data.csv provided in the data folder), skip this step.
 ```
-cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
+# The following program needs to be run in the cellphonedb environment, see [Cellphonedb](https://github.com/Teichlab/cellphonedb) for details on how to use it:
+cellphonedb method statistical_analysis ./data/ScRNA_test_data_metadata.txt ./data/ScRNA_test_data_matrix.txt --counts-data=gene_name --iterations=10 --threads=100 --output-path=./output/
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **counts-data** | [ensembl or gene_name or hgnc_symbol] |
-| **threads** | Max of threads to process the data. |
+| **counts-data** | [ensembl or gene_name or hgnc_symbol] Type of gene identifiers in the counts data |
+| **iterations** | Number of iterations for the statistical analysis [1000] |
+| **threads** | Number of threads to use. >=1 [4] |
 | **output-path** | Directory where the results will be allocated (the directory must exist). |
+
+
+```
+[ ][CORE][15/08/23-10:17:35][INFO] Initializing SqlAlchemy CellPhoneDB Core
+[ ][CORE][15/08/23-10:17:35][INFO] Using custom database at /home/jby2/.cpdb/releases/v4.0.0/cellphone.db
+[ ][APP][15/08/23-10:17:35][INFO] Launching Method cpdb_statistical_analysis_local_method_launcher
+[ ][APP][15/08/23-10:17:35][INFO] Launching Method _set_paths
+[ ][APP][15/08/23-10:17:35][WARNING] Output directory (/home/jby2/HoloNet/github) exist and is not empty. Result can overwrite old results
+[ ][APP][15/08/23-10:17:35][INFO] Launching Method _load_meta_counts
+[ ][APP][15/08/23-10:17:37][INFO] Launching Method _check_counts_data
+[ ][CORE][15/08/23-10:17:37][INFO] Launching Method cpdb_statistical_analysis_launcher
+[ ][CORE][15/08/23-10:17:37][INFO] Launching Method _counts_validations
+[ ][CORE][15/08/23-10:17:38][INFO] Launching Method get_interactions_genes_complex
+[ ][CORE][15/08/23-10:17:38][INFO] [Cluster Statistical Analysis] Threshold:0.1 Iterations:10 Debug-seed:-1 Threads:100 Precision:3
+[ ][CORE][15/08/23-10:17:39][INFO] Running Real Analysis
+[ ][CORE][15/08/23-10:17:39][INFO] Running Statistical Analysis
+[ ][CORE][15/08/23-10:17:43][INFO] Building Pvalues result
+[ ][CORE][15/08/23-10:17:43][INFO] Building results
+```
+
 
 ```
 Rscript ./tools/run_cellchat.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
