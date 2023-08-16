@@ -34,12 +34,12 @@ def mgc_repeat_training(X: torch.Tensor,
                         train_set_ratio: float = 0.85,
                         val_set_ratio: float = 0.15,
                         hidden_num: Optional[int] = None,
-                        max_epoch: int = 300,
-                        lr: float = 0.1,
+                        max_epoch: int = 200,
+                        lr: float = 0.01,
                         weight_decay: float = 5e-4,
                         step_size: int = 10,
                         gamma: float = 0.9,
-                        display_loss: bool = False,
+                        display_loss: bool = True,
                         only_cell_type: bool = False,
                         hide_repeat_tqdm: bool = False,
                         device: str = 'cpu',
@@ -168,7 +168,7 @@ def mgc_training(X, adj, target_gene_expr, train_mask, test_mask, val_mask, seed
                 print('MSE on val dataset:', val_MSE)
 
     MGC_model = MGC_model_list[np.argmin(np.array(val_MSE_list))].cpu()
-    return MGC_model, torch.stack(loss_list), torch.stack(test_MSE_list), torch.stack(val_MSE_list)
+    return MGC_model,torch.stack(loss_list), torch.stack(test_MSE_list), torch.stack(val_MSE_list)
 
 
 def get_mgc_result(trained_MGC_model_list: List[MGC_Model],
