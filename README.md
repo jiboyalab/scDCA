@@ -260,14 +260,27 @@ cell type: Mono/Macro
 >>> calculate the generated expression profile of the target gene. <<<  Tue Aug 15 23:24:52 2023
 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 113.09it/s]
 The mean squared error of original and predicted gene expression profiles: 0.03500232
-The Pearson correlation of original and predicted gene expression profiles: 0.24182112010369733
+The Pearson correlation of original and predicted gene expression profiles: 0.54182112010369733
 >>> the dominant cell communication assmebly that regulates the target gene expression pattern is stored at: <<<  /home/jby2/dca_rank_result.csv Tue Aug 15 23:24:52 2023
 >>> the ratio of different cell types affected by cellular communication is stored at: <<<  /home/jby2/ccc_ratio_result.csv Tue Aug 15 23:24:52 2023
 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:01<00:00, 37.04it/s]
 ```
+A sample output result file is as follows:
 
 
-
+**dca_rank_result.csv**:
+| | Cell_type_Pair |MGC_layer_attention|
+| --- | --- | --- |
+| 8 | CD8T:CD8T |0.51397777|
+| 4 | Malignant:Mono/Macro |0.44408146|
+| 7 | Malignant:Malignant |0.43624955|
+| 6 | CD8T:Mono/Macro |0.41747302|
+| 5 | CD8T:Malignant |0.4010921|
+| 1 | B:CD8T |0.3871707|
+| 2 | B:Malignant |0.35314357|
+| 9 | Mono/Macro:Mono/Macro |0.3088738|
+| 3 | B:Mono/Macro |0.27923074|
+| 0 | B:B |0.21194793|
 Visualization of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
