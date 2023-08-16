@@ -1,0 +1,11 @@
+,Cell_type_Pair,MGC_layer_attention
+8,Malignant:Mono/Macro,0.51397777
+4,CD8T:CD8T,0.44408146
+7,Malignant:Malignant,0.43624955
+6,CD8T:Mono/Macro,0.41747302
+5,CD8T:Malignant,0.4010921
+1,B:CD8T,0.3871707
+2,B:Malignant,0.35314357
+9,Mono/Macro:Mono/Macro,0.3088738
+3,B:Mono/Macro,0.27923074
+0,B:B,0.21194793
