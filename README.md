@@ -260,7 +260,7 @@ cell type: Mono/Macro
 >>> calculate the generated expression profile of the target gene. <<<  Tue Aug 15 23:24:52 2023
 100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 113.09it/s]
 The mean squared error of original and predicted gene expression profiles: 0.03500232
-The Pearson correlation of original and predicted gene expression profiles: 0.54182112010369733
+The Pearson correlation of original and predicted gene expression profiles: 0.34182112010369733
 >>> the dominant cell communication assmebly that regulates the target gene expression pattern is stored at: <<<  /home/jby2/dca_rank_result.csv Tue Aug 15 23:24:52 2023
 >>> the ratio of different cell types affected by cellular communication is stored at: <<<  /home/jby2/ccc_ratio_result.csv Tue Aug 15 23:24:52 2023
 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:01<00:00, 37.04it/s]
@@ -268,7 +268,7 @@ The Pearson correlation of original and predicted gene expression profiles: 0.54
 A sample output result file is as follows:
 
 
-**dca_rank_result.csv**:
+**dca_rank_result.csv** （The first column represents the serial number of cell type pairs, ordered by attention weight; the second column represents the cell type pair name; the third column represents the average attention weight for 50 model repetitions of training）:
 | | Cell_type_Pair |MGC_layer_attention|
 | --- | --- | --- |
 | 8 | CD8T:CD8T |0.51397777|
@@ -281,13 +281,25 @@ A sample output result file is as follows:
 | 9 | Mono/Macro:Mono/Macro |0.3088738|
 | 3 | B:Mono/Macro |0.27923074|
 | 0 | B:B |0.21194793|
-Visualization of results:
+
+
+A visualization sample of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
 </div>
 
 ===========================================================================
 
+
+**ccc_ration_result.csv** (The first column represents the serial number of cell type; the second column represents the extent to which the expression of a target gene is affected by cellular communication in the cell type; the third column represents the extent to which the expression of a target gene is affected by the cell type itself; the fourth column represents the ratio of the two (Delta_e/(Delta_e+E0)), indicating the extent to which that the cell type is affected by cellular communication).
+| | Delta_e |E0|Delta_e_proportion | Cell_type|
+| --- | --- | --- | --- | --- |
+| 0 |89.06278 |25.143023|0.77984464|B|
+| 1 | 2561.6501 |136.53331|0.9493981|CD8T|
+| 2 | 5678.756 |685.81494|0.8922449|Malignant|
+| 3 | 544.611 |30.595951|0.9468088|Mono/Macro|
+
+A visualization sample of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
 </div>
