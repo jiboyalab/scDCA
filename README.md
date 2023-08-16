@@ -206,7 +206,7 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 
 ## 2，Prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
 ```
-cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene HCST --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-2 --display_loss True --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
+cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene HCST --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-1 --display_loss True --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
 ```
 **Arguments**:
 
@@ -220,7 +220,7 @@ cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **facked_LR** | The faked ligand and receptor genes number for removing the edges with low specificities (default is 200). |
 | **repeat_num** | The repeat number for model training (default is 50). |
 | **max_epoch** | The max epoch for model training (default is 200). |
-| **learning_rate** | The learning rate for model training (default is 1e-2). |
+| **learning_rate** | The learning rate for model training (default is 1e-1). |
 | **display_loss** | Display training loss for model training (default is True).|
 | **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 | **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
@@ -228,7 +228,7 @@ cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 ```
 ############ ------------- scDecipher --------------- ############
 >>> arguments <<<
-Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', count='/home/jby2/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='HCST', learning_rate='0.01', lr_file='/home/jby2/LR_test_data.csv', max_epoch='200', meta='/home/jby2/ScRNA_test_data_metadata.txt', repeat_num='50')
+Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', count='/home/jby2/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='HCST', learning_rate='0.1', lr_file='/home/jby2/LR_test_data.csv', max_epoch='200', meta='/home/jby2/ScRNA_test_data_metadata.txt', repeat_num='50')
 >>> loading library and data <<<  Tue Aug 15 23:04:05 2023
 >>> construct an AnnData object from a count file and a metadata file <<<  Tue Aug 15 23:04:05 2023
 >>> load the provided dataframe with the information on ligands and receptors <<<  Tue Aug 15 23:04:08 2023
@@ -306,7 +306,7 @@ A visualization sample of results:
 
 ## 3，Prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
 ```
-cd ./src/tutorials2/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene GZMK --cell_type CD8T --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-2 --display_loss False --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
+cd ./src/tutorials2/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene GZMK --cell_type CD8T --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-1 --display_loss False --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
 ```
 **Arguments**:
 
@@ -321,16 +321,64 @@ cd ./src/tutorials2/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **facked_LR** | The faked ligand and receptor genes number for removing the edges with low specificities (default is 200). |
 | **repeat_num** | The repeat number for model training (default is 50). |
 | **max_epoch** | The max epoch for model training (default is 200). |
-| **learning_rate** | The learning rate for model training (default is 1e-2). |
+| **learning_rate** | The learning rate for model training (default is 1e-1). |
 | **display_loss** | Display training loss for model training (default is True).|
 | **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 | **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
 
 ```
-#
+############ ------------- scDecipher (the key factors in specific cell type)--------------- ############
+>>> arguments <<<  Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', cell_type='CD8T', count='/home/jby2/HoloNet/github/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='GZMK', learning_rate='0.1', lr_file='/home/jby2/HoloNet/github/LR_test_data.csv', max_epoch='200', meta='/home/jby2/HoloNet/github/ScRNA_test_data_metadata.txt', repeat_num='50')
+>>> loading library and data <<<  Wed Aug 16 16:52:58 2023
+>>> construct an AnnData object from a count file and a metadata file <<<  Wed Aug 16 16:52:58 2023
+>>> load the provided dataframe with the information on ligands and receptors <<<  Wed Aug 16 16:53:01 2023
+>>> calculate the CE tensor by considering the expression levels of ligand and receptor genes <<<  Wed Aug 16 16:53:01 2023
 
+    Notes:
+        This function calculates the CE tensor by considering the expression levels of ligand and receptor genes.
+        If the data is large, it may require substantial memory for computation.
+        We're working on improving this piece of code.
+    
+>>> filter the edge in calculated CE tensor, removing the edges with low specificities <<<  Wed Aug 16 16:53:06 2023
+
+    Notes:
+        This process will take a long time, if you want to reduce the calculation time, please reduce the facked_LR number, the default value is 200
+    
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 154/154 [12:42<00:00,  4.95s/it]
+>>> construct a cell type adjacency tensor based on the specific cell type and the summed LR-CE tensor. <<<  Wed Aug 16 17:05:50 2023
+cell type: B
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1412/1412 [00:03<00:00, 389.17it/s]
+cell type: CD8T
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1412/1412 [00:06<00:00, 211.45it/s]
+cell type: Malignant
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1412/1412 [00:23<00:00, 59.02it/s]
+cell type: Mono/Macro
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1412/1412 [00:03<00:00, 429.62it/s]
+>>> detect the highly variable genes <<<  Wed Aug 16 17:06:28 2023
+>>> start training the multi-view graph convolutional neural network <<<  Wed Aug 16 17:06:29 2023
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [01:22<00:00,  1.65s/it]
+>>> calculate the generated expression profile of the target gene. <<<  Wed Aug 16 17:07:51 2023
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 225.80it/s]
+The mean squared error of original and predicted gene expression profiles: 0.022984229
+The Pearson correlation of original and predicted gene expression profiles: 0.730637538204903
+>>> the dominant cell communication assmebly that regulates the target gene expression pattern is stored at: <<<  /home/jby2/dca_rank_result.csv Wed Aug 16 17:07:51 2023
+>>> the ratio of different cell types affected by cellular communication is stored at: <<<  /home/jby2/ccc_ratio_result.csv Wed Aug 16 17:07:51 2023
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 81.21it/s]
 ```
-Visualization of results:
+
+A sample output result file is as follows:
+
+**dca_rank_result.csv** （The first column represents the serial number of cell type pairs, ordered by attention weight; the second column represents the cell type pair name; the third column represents the average attention weight for 50 model repetitions of training）:
+| | Cell_type_Pair |MGC_layer_attention|
+| --- | --- | --- |
+| 2 | Malignant:CD8T |0.5214142|
+| 0 | B:CD8T |0.46100155|
+| 3 | Mono/Macro:CD8T |0.43015426|
+| 1 |  CD8T:CD8T|0.3521795|
+
+
+
+A visualization sample of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
 </div>
