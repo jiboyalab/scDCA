@@ -206,7 +206,7 @@ python ./tools/process_final_lr.py --lr_cellphonedb ./output/process_cellphonedb
 
 ## 2，Prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
 ```
-cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene HCST --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --display_loss True --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
+cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene HCST --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-2 --display_loss True --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
 ```
 **Arguments**:
 
@@ -220,6 +220,7 @@ cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **facked_LR** | The faked ligand and receptor genes number for removing the edges with low specificities (default is 200). |
 | **repeat_num** | The repeat number for model training (default is 50). |
 | **max_epoch** | The max epoch for model training (default is 200). |
+| **learning_rate** | The learning rate for model training (default is 1e-2). |
 | **display_loss** | Display training loss for model training (default is True).|
 | **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 | **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
