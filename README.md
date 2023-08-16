@@ -421,12 +421,33 @@ useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames
 ```
 
 ```
-# Second
+# Second, run tutorials3 to prioritize the dominant cell communication assmebly that affected functional states of malignant cells
+cd ./src/tutorials3/ && Rscript malignant_cell_states_gsva.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt --output_file_name ./output/malignant_cell_states_gsva.txt
+```
+**Arguments**:
+
+| **Arguments** | **Detail** |
+| --- | --- |
+| **count** | Count matrix / normalized count matrix path. |
+| **meta** | Meta data (celltypes annotation) path. |
+| **lr_file** | The final results of LR pairs. |
+| **cell_type** | The specific cell type (Malignant here). |
+| **cell_state_file_path** | The file path of functional state of malignant cells. |
+| **cell_state** | The functional state of malignant cells. |
+| **device** | The device for model training (cuda or cpu, default is cpu). |
+| **facked_LR** | The faked ligand and receptor genes number for removing the edges with low specificities (default is 200). |
+| **repeat_num** | The repeat number for model training (default is 50). |
+| **max_epoch** | The max epoch for model training (default is 200). |
+| **learning_rate** | The learning rate for model training (default is 1e-1). |
+| **display_loss** | Display training loss for model training (default is True).|
+| **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
+
+```
+# Second, run tutorials3 to prioritize the dominant cell communication assmebly that affected functional states of malignant cells
 cd ./src/tutorials3/ && Rscript malignant_cell_states_gsva.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt --output_file_name ./output/malignant_cell_states_gsva.txt
 ```
 
-
-Visualization of results:
+A visualization sample of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cellstate.png" alt="Editor" width="500">
 </div>
