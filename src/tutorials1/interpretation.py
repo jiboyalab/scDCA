@@ -12,15 +12,14 @@ from tqdm import tqdm
 from model import MGC_Model
 
 
-def lr_rank_in_mgc(trained_MGC_model_list: List[MGC_Model],
+def dca_rank_in_mgc(trained_MGC_model_list: List[MGC_Model],
                    lr_df: pd.DataFrame,
                    repeat_filter_num: int = 0,
                    repeat_attention_scale: bool = True,
                    ) -> pd.DataFrame:
     """
 
-    Analyze the MGC attention value corresponding to each LR pair, and plot the LR pairs serving as the core mediators
-    of FCEs.
+    Analyze the MGC attention value corresponding to each cell_type pair, and plot the cell_type pairs serving as the core mediators.
 
     Parameters
     ----------
@@ -37,13 +36,13 @@ def lr_rank_in_mgc(trained_MGC_model_list: List[MGC_Model],
 
     Returns
     -------
-    lr_df added column 'MGC_layer_attention', which contains the attention value of each LR pair.
+    lr_df added column 'MGC_layer_attention', which contains the attention value of each cell_type pair.
 
     """
     
     repeat_num = len(trained_MGC_model_list)
     
-    layer_attention_final = [trained_MGC_model_list[i].mgc.att.data.view(-1) for i in range(repeat_num)]
+    layer_attention_final = [trained_MGC_model_list[i].mgc.layer_attention.data.view(-1) for i in range(repeat_num)]
     layer_attention_torch = torch.stack(layer_attention_final)
 
     used_repeat = np.sort(np.argsort(abs(layer_attention_torch).var(1))[repeat_filter_num:])
@@ -61,7 +60,7 @@ def lr_rank_in_mgc(trained_MGC_model_list: List[MGC_Model],
     related_LR_df_result['MGC_layer_attention'] = pd.DataFrame(df1.mean(1), columns=['weight_sum']).weight_sum
     related_LR_df_result.index = lr_df.index
     related_LR_df_result = related_LR_df_result.sort_values(by='MGC_layer_attention', ascending=False)
-
+    related_LR_df_result.rename(columns={"LR_Pair":"Cell_type_Pair"},inplace = True)
 
     return related_LR_df_result
 
@@ -72,8 +71,7 @@ def delta_e_proportion(trained_MGC_model_list: List[MGC_Model],
                        X: torch.Tensor,
                        adj: torch.Tensor,
                        cell_type_names: List[str],
-                       fname: Optional[Union[str, Path]] = None,
-                       device:str="",
+            
                        **kwargs,
                        ) -> pd.DataFrame:
     """
@@ -108,7 +106,8 @@ def delta_e_proportion(trained_MGC_model_list: List[MGC_Model],
       
     for i in tqdm(range(len(trained_MGC_model_list))):
         model = trained_MGC_model_list[i]
-        x = model.mgc(X,adj,device)
+
+        x = model.mgc(adj.matmul(X))
         x = F.relu(x)
 
         ce = model.linear_ce(x)
@@ -122,11 +121,9 @@ def delta_e_proportion(trained_MGC_model_list: List[MGC_Model],
     ce_result = abs(X.T.mm(torch.stack(ce_list).mean(0)).sum(1).detach().numpy())
     # b_result = abs(X.T.mul(torch.stack(b_list).mean(0)).sum(1).detach().numpy())
     # ce_result = abs(X.T.mul(torch.stack(ce_list).mean(0)).sum(1).detach().numpy())
-    tmp_df['delta_e'] = ce_result
-    tmp_df['e0'] = b_result
-    tmp_df['delta_e_proportion'] = ce_result / (b_result + ce_result)
-    tmp_df['cell_type'] = cell_type_names
-    tmp_df.to_csv(fname)
-    
+    tmp_df['Delta_e'] = ce_result
+    tmp_df['E0'] = b_result
+    tmp_df['Delta_e_proportion'] = ce_result / (b_result + ce_result)
+    tmp_df['Cell_type'] = cell_type_names
 
     return tmp_df

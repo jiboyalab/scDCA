@@ -1,37 +1,19 @@
 import matplotlib.pyplot as plt
-import json,csv,os
-from pathlib import Path
-from typing import Union, Optional
-import scanpy as sc
+import csv,os
 from anndata._core.anndata import AnnData
-from matplotlib.image import imread
 import numpy as np
 import pandas as pd
 import anndata as ad
 from scipy.sparse import csr_matrix
-from scipy.spatial.distance import squareform, pdist
-from typing import List
 import torch
-import gc
 from tqdm import tqdm
 from copy import deepcopy
-from scipy import sparse
-from pathlib import Path
-from typing import Union, Optional, Tuple, List
 from scipy.stats import gmean
-import numpy as np
-import pandas as pd
-import torch
-from anndata._core.anndata import AnnData
-from tqdm import tqdm
 from typing import Tuple, List, Optional
-
-import numpy as np
-import pandas as pd
-import torch
-from anndata._core.anndata import AnnData
 from scipy.spatial.distance import pdist, squareform
 from sklearn.preprocessing import LabelBinarizer,OneHotEncoder
+
+
 def ReadMyCsv(SaveList, fileName):
     csv_reader = csv.reader(open(fileName))
     for row in csv_reader:  # 把每个rna疾病对加入OriginalData，注意表头
@@ -63,26 +45,32 @@ def set_figure_params(tex_fonts=False, ):
         plt.rcParams['text.latex.preamble'] = [r'\usepackage{underscore}']
 
 def construct_anndata(countfile,metafile):
-    """https://anndata-tutorials.readthedocs.io/en/latest/getting-started.html#Subsetting-AnnData
-        https://zhuanlan.zhihu.com/p/29535766
-    
     """
-    counts=pd.read_table(countfile,sep="\t",header=None)
-    counts=np.array(counts.values)
-    ori_counts=np.transpose(counts)
-    counts=np.array(ori_counts[1:,1:],dtype=np.float32)
-    counts_sparse = csr_matrix(counts)
+    This function constructs an AnnData object from a count file and a metadata file.
+    
+    Parameters:
+        countfile (str): The path to the count file. The file should be a tab-separated text file with the first row as gene names and the first column as cell names.
+        metafile (str): The path to the metadata file. The file should be a tab-separated text file with one row per cell and one column per metadata field.
+    
+    Returns:
+        adata (AnnData): An AnnData object containing the count data and metadata.
+    """
+    counts=pd.read_table(countfile,sep="\t",header=0,index_col=0)
+    counts_values=np.array(counts.values)
+    counts_values=np.transpose(counts_values) # scanpy handles single-cell data with rows as cell names, columns as gene names, and therefore transposes the gene expression matrix
+    counts_values=np.array(counts_values,dtype=np.float32)
+    counts_sparse = csr_matrix(counts_values)
     adata = ad.AnnData(counts_sparse)
     cell_meta=pd.read_table(metafile,sep="\t")
     adata.obs=cell_meta
-    adata.obs_names = list(ori_counts[1:,0])
-    adata.var_names = list(ori_counts[0,1:])
+    adata.obs_names = counts.columns.values.tolist()  
+    adata.var_names = counts.index.values.tolist()
     return adata
     
 
 
 def load_lr_df(LR_pair_database_path) -> pd.DataFrame:
-    """\
+    """
     Load the provided dataframe with the information on ligands and receptors.
     
     Returns
@@ -113,23 +101,40 @@ def get_expressed_lr_df(lr_df: pd.DataFrame) -> pd.DataFrame:
 
 def compute_ce_tensor(adata: AnnData,lr_df: pd.DataFrame,) -> torch.Tensor:
     
+    """
+    Compute the Cell-Cell Communication Strength (CE) tensor based on gene expression data.
 
-    
+    Args:
+        adata (AnnData): Annotated data containing gene expression information.
+        lr_df (pd.DataFrame): DataFrame containing ligand-receptor pairs' gene symbols.
+
+    Returns:
+        torch.Tensor: Cell-Cell Communication Strength (CE) tensor.
+
+    Note:
+        This function calculates the CE tensor by considering the expression levels of ligand and receptor genes.
+        If the data is large, it may require substantial memory for computation.
+        We're working on improving this piece of code.
+    """
+    print("""
+    Notes:
+        This function calculates the CE tensor by considering the expression levels of ligand and receptor genes.
+        If the data is large, it may require substantial memory for computation.
+        We're working on improving this piece of code.
+    """)
+    # Normalize gene expression data
     adata.X=adata.X/adata.X.max()
+    # Extract ligand and receptor gene symbols
     expressed_ligand = lr_df.loc[:, 'Ligand_gene_symbol'].tolist()
     expressed_receptor = lr_df.loc[:, 'Receptor_gene_symbol'].tolist()
-
+    # Get gene expression tensor for expressed ligands and receptors
     expressed_ligand_tensor = get_gene_expr_tensor(adata, expressed_ligand)
     expressed_receptor_tensor = get_gene_expr_tensor(adata, expressed_receptor).permute(0, 2, 1)
-    print("start mul")
+    # Calculate Cell-Cell Communication Efficacy (CE) tensor
     ce_tensor = expressed_ligand_tensor.mul(expressed_receptor_tensor)
-    print("end mul")
-    
-    ce_tensor2=ce_tensor+0.5
-    ce_tensor3=ce_tensor / ce_tensor2
-    
-    print("return ce_tensor")
-    return ce_tensor3.to(torch.float32)
+    # Apply a scaling factor to CE tensor
+    ce_tensor=ce_tensor / (ce_tensor+0.5)
+    return ce_tensor.to(torch.float32)
 
 
 def dist_factor_calculate(adata: AnnData,
@@ -184,10 +189,25 @@ def distinguish_dist_factor_calculate(adata: AnnData,
 def get_gene_expr_tensor(adata: AnnData,
                          gene_name: List[str],
                          ) -> torch.Tensor:
-    #传进来一个list类型的lr的名称
+    """
+    Extract gene expression data for a given list of gene names and convert it into a tensor.
+
+    Args:
+        adata (AnnData): Annotated data containing gene expression information.
+        gene_name (List[str]): List of gene names for which to extract expression data.
+
+    Returns:
+        torch.Tensor: Tensor containing gene expression data. The tensor shape is (genes, 1, cells).
+
+    Note:
+        This function processes gene expression data from the provided AnnData object.
+        For gene names containing '+', it calculates the geometric mean of expression values for the pairs.
+        The function then stacks the gene expression data column-wise to create the tensor.
+    """
     # gene_expr_mat = adata[:, gene_name].X.toarray().astype(np.float32)
-    gene_expr_mat=np.empty(shape=(adata.n_obs,1))#创建一个空数组,里面有随机值，后面去掉第一列的值
+    gene_expr_mat=np.empty(shape=(adata.n_obs,1))# Create an empty array with random values, and remove the first column of values from the back.
     for i in range(len(gene_name)):
+        
         if "+" in gene_name[i]:
             pair=[]
             temname=gene_name[i].split("+")
@@ -243,6 +263,10 @@ def filter_ce_tensor(ce_tensor: torch.Tensor,
     A CE tensor which removed the edges with low specificities (LR_pair_num * cell_num * cell_num)
 
     """
+    print("""
+    Notes:
+        This process will take a long time, if you want to reduce the calculation time, please reduce the facked_LR number, the default value is 200
+    """)
     if copy:
         if ce_tensor.is_sparse:
             ce_tensor = deepcopy(ce_tensor.to_dense())
@@ -315,7 +339,18 @@ def filter_ce_tensor(ce_tensor: torch.Tensor,
     return ce_tensor
 
 def construct_cell_type_adj(adata,Sum_LR_CE_tensor):
-    
+    """
+    Construct a cell type adjacency tensor based on the cell type and the summed LR-CE tensor.
+
+    Args:
+        adata (AnnData): Annotated data containing cell type information.
+        Sum_LR_CE_tensor (torch.Tensor): Summed LR-CE tensor containing cell-cell communication efficacies.
+
+    Returns:
+        torch.Tensor: Cell type adjacency tensor.
+        pd.DataFrame: DataFrame with cell type pairs.
+
+    """
     cell_type=np.unique(adata.obs["cell_type"].values)
     columns1=['LR_Pair']
     num=-1
@@ -478,20 +513,11 @@ def get_one_hot_cell_type_tensor(adata: AnnData,
 
     """
     cell_type = list(adata.obs[categorical_cell_type_col])
-    # nan_index = [i for i, n in enumerate(cell_type) if not isinstance(n, str)]
-    # cell_display = np.zeros(adata.shape[0])
-    # cell_display[nan_index] = 1
-
-    # adjacency_mat = find_neighbors(adata)
-    # for i in range(len(nan_index)):
-    #     a = np.where(adjacency_mat[nan_index[i], :] != 0)[0]
-    #     cell_type[nan_index[i]] = pd.value_counts(adata.obs[categorical_cell_type_col][a]).index[0]
 
     one_hot = LabelBinarizer()
     one_hot_cell_type = one_hot.fit_transform(cell_type)
 
     cell_type_index = list(one_hot.classes_)
-    # cell_type_index = np.array([re.sub("_", " ",i).title() for i in cell_type_index])
 
     return torch.FloatTensor(one_hot_cell_type), cell_type_index
 
