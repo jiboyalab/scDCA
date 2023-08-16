@@ -219,6 +219,47 @@ python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 | **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 | **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
 
+```
+############ ------------- scDecipher --------------- ############
+>>> loading library and data <<<  Tue Aug 15 23:04:05 2023
+>>> construct an AnnData object from a count file and a metadata file <<<  Tue Aug 15 23:04:05 2023
+>>> load the provided dataframe with the information on ligands and receptors <<<  Tue Aug 15 23:04:08 2023
+>>> calculate the CE tensor by considering the expression levels of ligand and receptor genes <<<  Tue Aug 15 23:04:08 2023
+
+    Note:
+        This function calculates the CE tensor by considering the expression levels of ligand and receptor genes.
+        If the data is large, it may require substantial memory for computation.
+        We're working on improving this piece of code.
+    
+>>> filter the edge in calculated CE tensor, removing the edges with low specificities <<<  Tue Aug 15 23:04:12 2023
+
+    Notes:
+        This process will take a long time, if you want to reduce the calculation time, please reduce the facked_LR number, the default value is 200
+    
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 154/154 [15:56<00:00,  6.21s/it]
+>>> construct a cell type adjacency tensor based on the cell type and the summed LR-CE tensor. <<<  Tue Aug 15 23:20:10 2023
+cell type: B
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:31<00:00,  7.75s/it]
+cell type: CD8T
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 3/3 [00:53<00:00, 17.96s/it]
+cell type: Malignant
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 2/2 [01:52<00:00, 56.26s/it]
+cell type: Mono/Macro
+100%|███████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 1/1 [00:01<00:00,  1.15s/it]
+>>> detect the highly variable genes <<<  Tue Aug 15 23:23:29 2023
+>>> start training the multi-view graph convolutional neural network <<<  Tue Aug 15 23:23:30 2023
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [01:22<00:00,  1.65s/it]
+>>> calculate the generated expression profile of the target gene. <<<  Tue Aug 15 23:24:52 2023
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:00<00:00, 113.09it/s]
+The mean squared error of original and predicted gene expression profiles: 0.03500232
+The Pearson correlation of original and predicted gene expression profiles: 0.24182112010369733
+>>> the dominant cell communication assmebly that regulates the target gene expression pattern is stored at: <<<  /home/jby2/dca_rank_result.csv Tue Aug 15 23:24:52 2023
+>>> the ratio of different cell types affected by cellular communication is stored at: <<<  /home/jby2/ccc_ratio_result.csv Tue Aug 15 23:24:52 2023
+100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 50/50 [00:01<00:00, 37.04it/s]
+```
+
+
+
 Visualization of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
