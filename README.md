@@ -221,6 +221,8 @@ python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 
 ```
 ############ ------------- scDecipher --------------- ############
+>>> arguments <<<
+Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', count='/home/jby2/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='HCST', learning_rate='0.01', lr_file='/home/jby2/LR_test_data.csv', max_epoch='200', meta='/home/jby2/ScRNA_test_data_metadata.txt', repeat_num='50')
 >>> loading library and data <<<  Tue Aug 15 23:04:05 2023
 >>> construct an AnnData object from a count file and a metadata file <<<  Tue Aug 15 23:04:05 2023
 >>> load the provided dataframe with the information on ligands and receptors <<<  Tue Aug 15 23:04:08 2023
