@@ -383,9 +383,10 @@ A visualization sample of results:
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
 </div>
 
-## 4，prioritize the dominant cell communication assmebly that affected functional states of malignant cells
+## 4，Prioritize the dominant cell communication assmebly that affected functional states of malignant cells
 ```
-python ./src/tutorials3/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --cell_type Malignant --cell_state EMT --dca_rank_result ./output/state_dca_rank_result.csv
+# First, we calculate functional states of malignant cells by GSVA, R package needs to be installed in advance: org.Hs.eg.db, clusterProfiler, GSVA
+cd ./src/tutorials3/ && Rscript malignant_cell_states_gsva.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt --output_file_name ./output/malignant_cell_states_gsva.txt
 ```
 **Arguments**:
 
@@ -393,10 +394,36 @@ python ./src/tutorials3/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 | --- | --- |
 | **count** | Count matrix / normalized count matrix path. |
 | **meta** | Meta data (celltypes annotation) path. |
-| **lr_file** | The final results of LR pairs. |
-| **cell_type** | The specific cell type.  |
-| **cell_state** | [Angiogenesis; Apoptosis; CellCycle; Differentiation; DNAdamage; DNArepair; EMT; Hypoxia; Inflammation; Invasion; Metastasis; Proliferation; Quiescence; Stemness.]  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that affected functional states of malignant cells. |
+| **output_file_name** | The output file name of results. |
+
+```
+[1] "############ ------------- TODO: calculate functional states of malignant cells --------------- ############"
+[1] "############ ------------- Author:  Boya Ji && Liwen Xu  date(2023-06) --------------- ############"
+[1] "############ ------------- R package needs to be installed in advance: org.Hs.eg.db, clusterProfiler, GSVA) --------------- ############"
+[1] ">>> CancerSEA signature gene list ID convert <<< [2023-08-16 19:07:48]"
+
+clusterProfiler v4.6.2  For help: https://yulab-smu.top/biomedical-knowledge-mining-book/
+...
+[1] "Running for human genes ..."
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+...
+[1] ">>> Extract malignant cell subsets <<< [2023-08-16 19:07:59]"
+[1] 10
+[1] ">>> Calculation of malignant cell state activity based on GSVA <<< [2023-08-16 19:08:12]"
+Estimating GSVA scores for 14 gene sets.
+Estimating ECDFs with Gaussian kernels
+  |======================================================================| 100%
+
+Warning message:
+useNames = NA is deprecated. Instead, specify either useNames = TRUE or useNames = TRUE.
+```
+
+```
+# Second
+cd ./src/tutorials3/ && Rscript malignant_cell_states_gsva.R --count ./data/ScRNA_test_data_matrix.txt --meta ./data/ScRNA_test_data_metadata.txt --output_file_name ./output/malignant_cell_states_gsva.txt
+```
 
 
 Visualization of results:
