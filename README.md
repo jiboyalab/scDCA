@@ -304,9 +304,9 @@ A visualization sample of results:
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
 </div>
 
-## 3，prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
+## 3，Prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
 ```
-python ./src/tutorials2/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --gene FOLR2 --cell_type TAM --dca_rank_result ./output/FOLR2_dca_rank_result.csv --ccc_ratio_result ./output/FOLR2_ccc_ratio_result.csv
+cd ./src/tutorials2/ && python main.py --count /home/jby2/ScRNA_test_data_matrix.txt --meta /home/jby2/ScRNA_test_data_metadata.txt --gene GZMK --cell_type CD8T --lr_file /home/jby2/LR_test_data.csv --device cuda:1 --facked_LR 200 --repeat_num 50 --max_epoch 200 --learning_rate 1e-2 --display_loss False --ccc_ratio_result /home/jby2/ccc_ratio_result.csv --dca_rank_result /home/jby2/dca_rank_result.csv
 ```
 **Arguments**:
 
@@ -315,11 +315,21 @@ python ./src/tutorials2/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta .
 | **count** | Count matrix / normalized count matrix path. |
 | **meta** | Meta data (celltypes annotation) path. |
 | **lr_file** | The final results of LR pairs. |
-| **gene** | The specific target gene name.  |
-| **cell_type** | The specific cell type (TAM:tumor-associated macrophages).  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
-| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
+| **gene** | The specific target gene name (Please ensure that the gene is highly variable, we detect the highly variable genes by running sc.pp.highly_variable_genes with default parameters). |
+| **cell_type** | The specific cell type. |
+| **device** | The device for model training (cuda or cpu, default is cpu). |
+| **facked_LR** | The faked ligand and receptor genes number for removing the edges with low specificities (default is 200). |
+| **repeat_num** | The repeat number for model training (default is 50). |
+| **max_epoch** | The max epoch for model training (default is 200). |
+| **learning_rate** | The learning rate for model training (default is 1e-2). |
+| **display_loss** | Display training loss for model training (default is True).|
+| **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
+| **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
 
+```
+#
+
+```
 Visualization of results:
 <div align="center">
   <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
