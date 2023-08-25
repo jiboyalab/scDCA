@@ -522,7 +522,7 @@ A visualization sample of results:
 
 # Contributing
 
-All authors were involved in the conceptualization of the proposed method. LWX and SLP conceived and supervised the project. BYJ and HTZ designed the study and developed the approach. BYJ and HTZ implemented and applied the method to microbial data. BYJ and HTZ analyzed the results. LWX and SLP contributed to the review of the manuscript before submission for publication. All authors read and approved the final manuscript.
+All authors were involved in the conceptualization of the scDecipher method.  LWX and SLP conceived and supervised the project. BYJ and LWX designed the study and developed the approach. XQW and XW collected the data. BYJ and LWX analyzed the results. BYJ, XQW, XW, LWX and SLP contributed to the review of the manuscript before submission for publication. All authors read and approved the final manuscript.
 
 # Cite
 <p align="center">
