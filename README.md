@@ -11,10 +11,10 @@
 scDCA is a toolkit to decipher the dominant cell communication assembly with specific functional influence by utilizing multi-view graph attention network. (i) scDCA takes advantage of four state-of-the-art cell–cell communication analysis tools to systematically and reliably infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data. (ii) Based on prior knowledge of L-R pairs and gene expression profile, scDCA constructs a multi-view cell-cell communication network between different cell types at single-cell resolution by using an edge weighting strategy and filtering out edges with low specificity. (iii) scDCA develops a multi-view graph attention network to reconstruct the expression pattern of target genes or the functional status of receiver cells, and then deciphers the dominant cell communication assembly by interpreting the trained model. The overview figure of scDCA is shown as follows.
 
 
-![Image text](https://github.com/jiboyalab/scDecipher/blob/main/IMG/workflow-5.0.png)
+![Image text](https://github.com/jiboyalab/scDCA/blob/main/IMG/workflow-5.0.png)
 
 
-The overview of scDCA. **(a)** The construction of multi-view CCC network at single-cell resolution. First, four excellent CCC tools were applied to infer ligand-receptor pairs from single cell expression profiles. Second, an edge weighting strategy was applied to calculate the CCC strength at single-cell resolution based on the inferred LR pairs. Third, low specificity CCCs caused by widely expressed ligands (or receptors) or sequencing technology errors were filtered out. Fourth, the CCC graphs between each pair of different cell types were constructed, where the nodes in the graph represent single cells and the edges represent the communication strength between single cells calculated in the previous step. **(b)** The schematic diagram of a full picture of cell-cell communication (CCC). LR: Ligand-Receptor; $E$: gene expression profile; $E_{0}$: baseline expression determined by cell type; $\Delta E$: expression change caused by CCC. $F$: functional states of malignant cells; $F_{0}$: baseline state determined by the cell itself; $\Delta F$: state change caused by CCC. **(c)** The multi-view graph attention learning for predicting target gene expression or functional states of malignant cells. First, each CCC graph obtained from step b was trained by a graph convolutional network (GCN) and subjected to a nonlinear transformation by ReLU function, where the input contained the CCC strength matrix as the adjacency matrix and the one-hot encoding matrix obtained according to cell types as the initial feature matrix of the nodes. Second, the gene expressions or functional states obtained under different views were fused by an attention mechanism and then retrained using a multi-layer perceptron (MLP) to estimate $\Delta E/\Delta F$. Third, another MLP was applied to estimate  $E_{0}/F_{0}$ based on the cell-type matrix. Fourth, two estimations were summed as the final prediction results and trained iteratively to minimise the mean square error (MSE) with the true gene expression profiles or functional states. **(d)** The main function of scDecipher.
+The overview of scDCA. **(a)** The construction of multi-view CCC network at single-cell resolution. First, four excellent CCC tools were applied to infer ligand-receptor pairs from single cell expression profiles. Second, an edge weighting strategy was applied to calculate the CCC strength at single-cell resolution based on the inferred LR pairs. Third, low specificity CCCs caused by widely expressed ligands (or receptors) or sequencing technology errors were filtered out. Fourth, the CCC graphs between each pair of different cell types were constructed, where the nodes in the graph represent single cells and the edges represent the communication strength between single cells calculated in the previous step. **(b)** The schematic diagram of a full picture of cell-cell communication (CCC). LR: Ligand-Receptor; $E$: gene expression profile; $E_{0}$: baseline expression determined by cell type; $\Delta E$: expression change caused by CCC. $F$: functional states of malignant cells; $F_{0}$: baseline state determined by the cell itself; $\Delta F$: state change caused by CCC. **(c)** The multi-view graph attention learning for predicting target gene expression or functional states of malignant cells. First, each CCC graph obtained from step b was trained by a graph convolutional network (GCN) and subjected to a nonlinear transformation by ReLU function, where the input contained the CCC strength matrix as the adjacency matrix and the one-hot encoding matrix obtained according to cell types as the initial feature matrix of the nodes. Second, the gene expressions or functional states obtained under different views were fused by an attention mechanism and then retrained using a multi-layer perceptron (MLP) to estimate $\Delta E/\Delta F$. Third, another MLP was applied to estimate  $E_{0}/F_{0}$ based on the cell-type matrix. Fourth, two estimations were summed as the final prediction results and trained iteratively to minimise the mean square error (MSE) with the true gene expression profiles or functional states. **(d)** The main function of scDCA.
 ## Table of Contents
 
 - [Installation](#installation)
@@ -27,7 +27,7 @@ The overview of scDCA. **(a)** The construction of multi-view CCC network at sin
 
 ## Installation
 
-scDecipher is tested to work under:
+scDCA is tested to work under:
 
 ```
 * Python 3.8.0
@@ -57,14 +57,14 @@ To reproduce our results:
 | File name  | Description |
 | ------------- | ------------- |
 | RCC_scRNA_P76_matrix.txt  | The single-cell gene expression matrix for patient 76 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| RCC_scRNA_P76_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 76 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| LR_P76.csv  | The integrated ligand-receptor results for patient 76 with advanced renal cell carcinoma obtained form 4 cell–cell communication analysis tools. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| RCC_scRNA_P76_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 76 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| LR_P76.csv  | The integrated ligand-receptor results for patient 76 with advanced renal cell carcinoma obtained form 4 cell–cell communication analysis tools. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
 | RCC_scRNA_P915_matrix.txt  | The single-cell gene expression matrix for patient 915 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| RCC_scRNA_P915_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 915 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| LR_P915.csv  | The integrated ligand-receptor results for patient 915 with advanced renal cell carcinoma obtained form 4 cell–cell communication analysis tools. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| ScRNA_test_data_matrix.txt  | The single-cell gene expression matrix for test data to reduce the computational overhead and to make it easier for readers to reproduce our code. The origional data can be downloaded from the GSE175510 and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| ScRNA_test_data_metadata.txt  | The single-cell metadata for test data including cell type annotations. The origional data can be downloaded from the GSE175510 and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
-| LR_test_data.csv  | The integrated ligand-receptor results for test data. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDecipher/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| RCC_scRNA_P915_metadata.txt  | The single-cell metadata, including cell type annotations, for patient 915 with advanced renal cell carcinoma. The origional data can be downloaded from the [Paper](https://singlecell.broadinstitute.org/single_cell/study/SCP1288/tumor-and-immune-reprogramming-during-immunotherapy-in-advanced-renal-cell-carcinoma?hiddenTraces=P55_scRNA%2CP90_scRNA%2CP906_scRNA%2CP912_scRNA%2CP913_scRNA%2CP916_scRNA%2CP76_scRNA#study-summary.) and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| LR_P915.csv  | The integrated ligand-receptor results for patient 915 with advanced renal cell carcinoma obtained form 4 cell–cell communication analysis tools. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| ScRNA_test_data_matrix.txt  | The single-cell gene expression matrix for test data to reduce the computational overhead and to make it easier for readers to reproduce our code. The origional data can be downloaded from the GSE175510 and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| ScRNA_test_data_metadata.txt  | The single-cell metadata for test data including cell type annotations. The origional data can be downloaded from the GSE175510 and the processed data by us can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
+| LR_test_data.csv  | The integrated ligand-receptor results for test data. The data can be obtained from the [Github/data](https://github.com/jiboyalab/scDCA/tree/main/data) or [Google Drive](https://drive.google.com/drive/folders/18sUpPlPuT9SBg-2rvurJ-IHjiKnhivI-?usp=drive_link)|
 | P76_malignant_cell_states_gsva_mat.txt  | The activity scores calculated by gene set variation analysis (gsva) for 14 functional state in malignant cells of patient P76, which 14 functional state signatures of malignant cells were obtained from the [CancerSEA](http://biocc.hrbmu.edu.cn/CancerSEA/)|
 | malignant_cell_states_gsva.txt  | The activity scores calculated by gene set variation analysis (gsva) for 14 functional state in malignant cells of test data, which 14 functional state signatures of malignant cells were obtained from the [CancerSEA](http://biocc.hrbmu.edu.cn/CancerSEA/)|
 
@@ -226,7 +226,7 @@ cd ./src/tutorials1/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
 
 ```
-############ ------------- scDecipher --------------- ############
+############ ------------- scDCA --------------- ############
 >>> arguments <<<
 Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', count='/home/jby2/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='HCST', learning_rate='0.1', lr_file='/home/jby2/LR_test_data.csv', max_epoch='200', meta='/home/jby2/ScRNA_test_data_metadata.txt', repeat_num='50')
 >>> loading library and data <<<  Tue Aug 15 23:04:05 2023
@@ -285,7 +285,7 @@ A sample output result file is as follows:
 
 A visualization sample of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
+  <img src="https://github.com/jiboyalab/scDCA/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
 </div>
 
 ===========================================================================
@@ -301,7 +301,7 @@ A visualization sample of results:
 
 A visualization sample of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
+  <img src="https://github.com/jiboyalab/scDCA/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
 </div>
 
 ## 3，Prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
@@ -327,7 +327,7 @@ cd ./src/tutorials2/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **ccc_ratio_result** | The result filename of ratio of different cell types affected by cellular communication. |
 
 ```
-############ ------------- scDecipher (the key factors in specific cell type)--------------- ############
+############ ------------- scDCA (the key factors in specific cell type)--------------- ############
 >>> arguments <<<  Namespace(ccc_ratio_result='/home/jby2/ccc_ratio_result.csv', cell_type='CD8T', count='/home/jby2/HoloNet/github/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', gene='GZMK', learning_rate='0.1', lr_file='/home/jby2/HoloNet/github/LR_test_data.csv', max_epoch='200', meta='/home/jby2/HoloNet/github/ScRNA_test_data_metadata.txt', repeat_num='50')
 >>> loading library and data <<<  Wed Aug 16 16:52:58 2023
 >>> construct an AnnData object from a count file and a metadata file <<<  Wed Aug 16 16:52:58 2023
@@ -380,7 +380,7 @@ A sample output result file is as follows:
 
 A visualization sample of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
+  <img src="https://github.com/jiboyalab/scDCA/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
 </div>
 
 ## 4，Prioritize the dominant cell communication assmebly that affected functional states of malignant cells
@@ -443,7 +443,7 @@ cd ./src/tutorials3/ && python main.py --count /home/jby2/ScRNA_test_data_matrix
 | **dca_rank_result** | The result filename of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
 
 ```
-############ ------------- scDecipher (functional states of malignant cells)--------------- ############
+############ ------------- scDCA (functional states of malignant cells)--------------- ############
 >>> arguments <<<  Namespace(cell_state='EMT', cell_state_file_path='/home/jby2/malignant_cell_states_gsva.txt', cell_type='Malignant', count='/home/jby2/ScRNA_test_data_matrix.txt', dca_rank_result='/home/jby2/dca_rank_result.csv', device='cuda:1', display_loss='False', facked_LR='200', learning_rate='1e-1', lr_file='/home/jby2/LR_test_data.csv', max_epoch='200', meta='/home/jby2/ScRNA_test_data_metadata.txt', repeat_num='50')
 >>> loading library and data <<<  Wed Aug 16 20:01:43 2023
 >>> construct an AnnData object from a count file and a metadata file <<<  Wed Aug 16 20:01:43 2023
@@ -482,7 +482,7 @@ The Pearson correlation of original and predicted the functional states of malig
 
 A visualization sample of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cellstate.png" alt="Editor" width="500">
+  <img src="https://github.com/jiboyalab/scDCA/blob/main/IMG/cellstate.png" alt="Editor" width="500">
 </div>
 
 ## 5，Clinical intervertion altered effect of cell communication on gene expression
@@ -511,7 +511,7 @@ cd ./src/tutorials1/ && python main.py --count /home/jby2/RCC_scRNA_P915_matrix.
 
 A visualization sample of results:
 <div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arankchange.png" alt="Editor" width="500">
+  <img src="https://github.com/jiboyalab/scDCA/blob/main/IMG/cd8arankchange.png" alt="Editor" width="500">
 </div>
 
 ===========================================================================
@@ -522,7 +522,7 @@ A visualization sample of results:
 
 # Contributing
 
-All authors were involved in the conceptualization of the scDecipher method.  LWX and SLP conceived and supervised the project. BYJ and LWX designed the study and developed the approach. XQW and XW collected the data. BYJ and LWX analyzed the results. BYJ, XQW, XW, LWX and SLP contributed to the review of the manuscript before submission for publication. All authors read and approved the final manuscript.
+All authors were involved in the conceptualization of the scDCA method.  LWX and SLP conceived and supervised the project. BYJ and LWX designed the study and developed the approach. XQW and XW collected the data. BYJ and LWX analyzed the results. BYJ, XQW, XW, LWX and SLP contributed to the review of the manuscript before submission for publication. All authors read and approved the final manuscript.
 
 # Cite
 <p align="center">
@@ -533,7 +533,7 @@ All authors were involved in the conceptualization of the scDecipher method.  LW
 
 <p align="center">
   <a href="#">
-     <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjiboyalab%2FscDecipher&labelColor=%233499cc&countColor=%2370c168" />
+     <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjiboyalab%2FscDCA&labelColor=%233499cc&countColor=%2370c168" />
    </a>
 </p>
 
