@@ -1,4 +1,4 @@
-# Deciphering the dominant cell communication assembly of downstream functional events from single-cell RNA-seq data
+# Multi-view graph learning for deciphering the dominant cell communication assembly of downstream functional events from single-cell RNA-seq data
 ===========================================================================
 
 
